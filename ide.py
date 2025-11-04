@@ -1,27 +1,25 @@
-# ide.py
 import tkinter as tk
 from tkinter import filedialog, messagebox
-from lexer.lexer import Lexer
-from parser.parser import Parser
-from interpreter.interpreter import Interpreter
+from main import run_file  # Import the updated run_file function
 
+# Run code from editor
 def run_code():
     code = text_editor.get("1.0", tk.END)
     if not code.strip():
         messagebox.showwarning("Warning", "Code editor is empty!")
         return
-    
-    try:
-        lexer = Lexer(code)
-        parser = Parser(lexer)
-        interpreter = Interpreter()
-        result = interpreter.visit(parser.parse())
-        output_box.delete("1.0", tk.END)
-        output_box.insert(tk.END, str(result))
-    except Exception as e:
-        output_box.delete("1.0", tk.END)
-        output_box.insert(tk.END, f"Error: {e}")
 
+    # Save temporary code to a file for running
+    temp_path = "temp_run.txt"
+    with open(temp_path, "w") as f:
+        f.write(code)
+
+    output_box.delete("1.0", tk.END)
+    result = run_file(temp_path)
+    output_box.insert(tk.END, result)
+    output_box.see(tk.END)
+
+# Open file
 def open_file():
     file_path = filedialog.askopenfilename(filetypes=[("Text files", "*.txt")])
     if file_path:
@@ -30,6 +28,7 @@ def open_file():
         text_editor.delete("1.0", tk.END)
         text_editor.insert(tk.END, code)
 
+# Save file
 def save_file():
     file_path = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt")])
     if file_path:
