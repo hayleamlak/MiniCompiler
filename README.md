@@ -3,7 +3,6 @@
 A simple Python compiler demonstrating core compiler concepts: **lexer**, **parser**, and **interpreter**.  
 Supports variable assignments, arithmetic, and print statements.
 
----
 
 ## **Project Structure**
 
