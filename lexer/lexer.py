@@ -1,8 +1,8 @@
 # lexer/lexer.py
 
 # Token types
-INTEGER, PLUS, MINUS, MUL, DIV, ASSIGN, PRINT, IDENTIFIER, EOF = (
-    'INTEGER', 'PLUS', 'MINUS', 'MUL', 'DIV', 'ASSIGN', 'PRINT', 'IDENTIFIER', 'EOF'
+INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, ASSIGN, PRINT, IDENTIFIER, EOF = (
+    'INTEGER', 'PLUS', 'MINUS', 'MUL', 'DIV', 'LPAREN', 'RPAREN', 'ASSIGN', 'PRINT', 'IDENTIFIER', 'EOF'
 )
 
 class Token:
@@ -67,6 +67,12 @@ class Lexer:
             if self.current_char == '/':
                 self.advance()
                 return Token(DIV, '/')
+            if self.current_char == '(':
+                self.advance()
+                return Token(LPAREN, '(')
+            if self.current_char == ')':
+                self.advance()
+                return Token(RPAREN, ')')
             if self.current_char == '=':
                 self.advance()
                 return Token(ASSIGN, '=')

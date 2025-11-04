@@ -1,8 +1,8 @@
 # parser/parser.py
 
-from lexer.lexer import Token, INTEGER, PLUS, MINUS, MUL, DIV, ASSIGN, PRINT, IDENTIFIER, EOF
+from lexer.lexer import *
 
-# AST nodes
+# AST Nodes
 class BinOp:
     def __init__(self, left, op, right):
         self.left = left
@@ -37,7 +37,6 @@ class Parser:
         else:
             raise Exception(f"Unexpected token {self.current_token}, expected {token_type}")
 
-    # factor : INTEGER | IDENTIFIER
     def factor(self):
         token = self.current_token
         if token.type == INTEGER:
@@ -46,32 +45,30 @@ class Parser:
         elif token.type == IDENTIFIER:
             self.eat(IDENTIFIER)
             return Var(token.value)
+        elif token.type == LPAREN:
+            self.eat(LPAREN)
+            node = self.expr()
+            self.eat(RPAREN)
+            return node
+        else:
+            raise Exception(f"Unexpected factor: {token}")
 
-    # term : factor ((MUL | DIV) factor)*
     def term(self):
         node = self.factor()
         while self.current_token.type in (MUL, DIV):
             token = self.current_token
-            if token.type == MUL:
-                self.eat(MUL)
-            elif token.type == DIV:
-                self.eat(DIV)
+            self.eat(token.type)
             node = BinOp(left=node, op=token, right=self.factor())
         return node
 
-    # expr : term ((PLUS | MINUS) term)*
     def expr(self):
         node = self.term()
         while self.current_token.type in (PLUS, MINUS):
             token = self.current_token
-            if token.type == PLUS:
-                self.eat(PLUS)
-            elif token.type == MINUS:
-                self.eat(MINUS)
+            self.eat(token.type)
             node = BinOp(left=node, op=token, right=self.term())
         return node
 
-    # statement : IDENTIFIER ASSIGN expr | PRINT expr
     def statement(self):
         token = self.current_token
         if token.type == IDENTIFIER:
@@ -84,7 +81,10 @@ class Parser:
             self.eat(PRINT)
             value = self.expr()
             return Print(value)
+        else:
+            raise Exception(f"Invalid statement: {token}")
 
-    # parse : statement (for now, one statement at a time)
     def parse(self):
+        if self.current_token.type == EOF:
+            return None
         return self.statement()
