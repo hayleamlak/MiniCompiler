@@ -151,16 +151,14 @@ imports:
  &#8226;   <a href="#functools">functools</a>
  &#8226;   <a href="#genericpath">genericpath</a>
  &#8226;   <a href="#heapq">heapq</a>
- &#8226;   <a href="#interpreter.interpreter">interpreter.interpreter</a>
  &#8226;   <a href="#io">io</a>
  &#8226;   <a href="#keyword">keyword</a>
- &#8226;   <a href="#lexer.lexer">lexer.lexer</a>
  &#8226;   <a href="#linecache">linecache</a>
  &#8226;   <a href="#locale">locale</a>
+ &#8226;   <a href="#main">main</a>
  &#8226;   <a href="#ntpath">ntpath</a>
  &#8226;   <a href="#operator">operator</a>
  &#8226;   <a href="#os">os</a>
- &#8226;   <a href="#parser.parser">parser.parser</a>
  &#8226;   <a href="#posixpath">posixpath</a>
  &#8226;   <a href="#pyi_rth__tkinter.py">pyi_rth__tkinter.py</a>
  &#8226;   <a href="#pyi_rth_inspect.py">pyi_rth_inspect.py</a>
@@ -177,6 +175,8 @@ imports:
  &#8226;   <a href="#tkinter">tkinter</a>
  &#8226;   <a href="#tkinter.filedialog">tkinter.filedialog</a>
  &#8226;   <a href="#tkinter.messagebox">tkinter.messagebox</a>
+ &#8226;   <a href="#tkinter.simpledialog">tkinter.simpledialog</a>
+ &#8226;   <a href="#tkinter.ttk">tkinter.ttk</a>
  &#8226;   <a href="#traceback">traceback</a>
  &#8226;   <a href="#types">types</a>
  &#8226;   <a href="#warnings">warnings</a>
@@ -5483,7 +5483,7 @@ imported by:
 
 <div class="node">
   <a name="interpreter.interpreter"></a>
-  <a target="code" href="///C:/Users/USER/garbage/python%20project/MiniCompiler/interpreter/interpreter.py" type="text/plain"><tt>interpreter.interpreter</tt></a>
+  <a target="code" href="///C:/Users/USER/garbage/python%20project/minicompiler/interpreter/interpreter.py" type="text/plain"><tt>interpreter.interpreter</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#interpreter">interpreter</a>
@@ -5492,7 +5492,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#ide.py">ide.py</a>
+    <a href="#main">main</a>
 
   </div>
 
@@ -5613,7 +5613,7 @@ imported by:
 
 <div class="node">
   <a name="lexer.lexer"></a>
-  <a target="code" href="///C:/Users/USER/garbage/python%20project/MiniCompiler/lexer/lexer.py" type="text/plain"><tt>lexer.lexer</tt></a>
+  <a target="code" href="///C:/Users/USER/garbage/python%20project/minicompiler/lexer/lexer.py" type="text/plain"><tt>lexer.lexer</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#lexer">lexer</a>
@@ -5621,7 +5621,7 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#ide.py">ide.py</a>
+    <a href="#main">main</a>
  &#8226;   <a href="#parser.parser">parser.parser</a>
 
   </div>
@@ -5728,6 +5728,24 @@ imported by:
     <a href="#shutil">shutil</a>
  &#8226;   <a href="#tarfile">tarfile</a>
  &#8226;   <a href="#zipfile">zipfile</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="main"></a>
+  <a target="code" href="///C:/Users/USER/garbage/python%20project/minicompiler/main.py" type="text/plain"><tt>main</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#interpreter.interpreter">interpreter.interpreter</a>
+ &#8226;   <a href="#lexer.lexer">lexer.lexer</a>
+ &#8226;   <a href="#parser.parser">parser.parser</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#ide.py">ide.py</a>
 
   </div>
 
@@ -5982,7 +6000,7 @@ imported by:
 
 <div class="node">
   <a name="parser.parser"></a>
-  <a target="code" href="///C:/Users/USER/garbage/python%20project/MiniCompiler/parser/parser.py" type="text/plain"><tt>parser.parser</tt></a>
+  <a target="code" href="///C:/Users/USER/garbage/python%20project/minicompiler/parser/parser.py" type="text/plain"><tt>parser.parser</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#lexer.lexer">lexer.lexer</a>
@@ -5991,8 +6009,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#ide.py">ide.py</a>
- &#8226;   <a href="#interpreter.interpreter">interpreter.interpreter</a>
+    <a href="#interpreter.interpreter">interpreter.interpreter</a>
+ &#8226;   <a href="#main">main</a>
 
   </div>
 
@@ -6935,6 +6953,7 @@ imports:
  &#8226;   <a href="#tkinter.constants">tkinter.constants</a>
  &#8226;   <a href="#tkinter.filedialog">tkinter.filedialog</a>
  &#8226;   <a href="#tkinter.messagebox">tkinter.messagebox</a>
+ &#8226;   <a href="#tkinter.ttk">tkinter.ttk</a>
  &#8226;   <a href="#traceback">traceback</a>
  &#8226;   <a href="#types">types</a>
 
@@ -6948,6 +6967,7 @@ imported by:
  &#8226;   <a href="#tkinter.filedialog">tkinter.filedialog</a>
  &#8226;   <a href="#tkinter.messagebox">tkinter.messagebox</a>
  &#8226;   <a href="#tkinter.simpledialog">tkinter.simpledialog</a>
+ &#8226;   <a href="#tkinter.ttk">tkinter.ttk</a>
 
   </div>
 
@@ -7057,7 +7077,25 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#tkinter.filedialog">tkinter.filedialog</a>
+    <a href="#ide.py">ide.py</a>
+ &#8226;   <a href="#tkinter.filedialog">tkinter.filedialog</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="tkinter.ttk"></a>
+  <a target="code" href="///C:/Users/USER/AppData/Local/Programs/Python/Python311/Lib/tkinter/ttk.py" type="text/plain"><tt>tkinter.ttk</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#tkinter">tkinter</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#ide.py">ide.py</a>
+ &#8226;   <a href="#tkinter">tkinter</a>
 
   </div>
 

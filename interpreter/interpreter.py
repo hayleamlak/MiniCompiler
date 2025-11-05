@@ -1,11 +1,9 @@
-# interpreter/interpreter.py
-
 from parser.parser import BinOp, Num, Var, Assign, Print
 
 class Interpreter:
     def __init__(self):
-        self.env = {}
-        self.output = ""
+        self.env = {}     # Store variables
+        self.output = ""  # Collect all outputs
 
     def visit(self, node):
         if isinstance(node, Num):
@@ -36,15 +34,16 @@ class Interpreter:
 
         elif isinstance(node, Print):
             value = self.visit(node.expr)
-            self.output += str(value) + "\n"
+            self.output += str(value) + "\n"  # Append instead of overwrite
             return value
 
         else:
-            raise Exception(f"Unknown node: {type(node)}")
+            raise Exception(f"Unknown node type: {type(node)}")
 
     def run(self, parser):
+        """Run all statements and return collected output"""
         while parser.current_token.type != 'EOF':
             node = parser.parse()
             if node:
                 self.visit(node)
-        return self.output.strip()
+        return self.output.strip()  # Remove trailing newline
