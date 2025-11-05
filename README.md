@@ -1,53 +1,66 @@
-# MiniCompiler
+How to Use
 
-A simple Python compiler demonstrating core compiler concepts: **lexer**, **parser**, and **interpreter**.  
-Supports variable assignments, arithmetic, and print statements.
+Use the File menu to create, open, or save files.
+
+Write code in the editor. Example syntax supported:
+
+x = 10
+y = 20
+print x + y
+print x * 2
+
+Click Run Code in the Run menu to execute your code. Output will appear in the terminal at the bottom.
+
+Toggle the terminal or sidebar using the View menu if needed.
+
+Example Code
+a = 5
+b = 10
+print a + b
+c = a * b
+print c
 
 
-## **Project Structure**
+Expected output in the terminal:
 
+15
+50
+
+Project Structure
 MiniCompiler/
-├─ lexer/ # Tokenizer
-│ └─ lexer.py
-├─ parser/ # AST builder
-│ └─ parser.py
-├─ interpreter/ # Executes AST
-│ └─ interpreter.py
-├─ examples/ # Sample programs
-│ └─ example1.txt
-├─ main.py # Entry point
-└─ README.md
+│
+├─ ide.py                  # Main Tkinter IDE
+├─ main.py                 # Run file logic
+├─ lexer/
+│  └─ lexer.py             # Lexer/tokenizer
+├─ parser/
+│  └─ parser.py            # Parser/AST
+├─ interpreter/
+│  └─ interpreter.py       # Interpreter
+├─ assets/
+│  └─ app.ico              # Application icon
+└─ dist/                   # Compiled exe (after PyInstaller)
 
-yaml
-Copy code
+Compiling to Executable
 
----
+Ensure PyInstaller is installed:
 
-## **Usage**
+pip install pyinstaller
 
-1. Edit `examples/example1.txt`:
 
-```text
-x = 10 + 5
-y = x * 2
-print y
-z = y - 5
-print z
-Run the compiler:
+Run the following command to generate a standalone executable:
 
-bash
-Copy code
-python main.py
-Output:
+pyinstaller --onefile --noconsole --icon=assets/app.ico ide.py
 
-Copy code
-30
-25
-Future Enhancements
-Loops and conditionals
 
-Multi-line terminal input (REPL)
+The ide.exe file will be located in the dist/ folder.
 
-Functions and advanced expressions
+Notes
 
-Better error handling
+This IDE currently supports basic arithmetic, variable assignment, and print statements.
+
+All output from multiple print statements is accumulated in the terminal.
+
+Designed for educational and experimental purposes.
+
+Dark theme inspired by VS Code.
