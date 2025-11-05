@@ -27,19 +27,6 @@ Expected output in the terminal:
 50
 
 Project Structure
-MiniCompiler/
-│
-├─ ide.py                  # Main Tkinter IDE
-├─ main.py                 # Run file logic
-├─ lexer/
-│  └─ lexer.py             # Lexer/tokenizer
-├─ parser/
-│  └─ parser.py            # Parser/AST
-├─ interpreter/
-│  └─ interpreter.py       # Interpreter
-├─ assets/
-│  └─ app.ico              # Application icon
-└─ dist/                   # Compiled exe (after PyInstaller)
 
 Compiling to Executable
 
