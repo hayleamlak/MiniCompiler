@@ -1,0 +1,6 @@
+*.tex linguist-detectable=false
+*.aux linguist-detectable=false
+*.log linguist-detectable=false
+*.pdf linguist-detectable=false
+
+*.py linguist-language=Python

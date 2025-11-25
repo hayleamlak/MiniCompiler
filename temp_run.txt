@@ -1,8 +1,7 @@
-print(5+5)
- x=6
-x=7+1
-print(x)
-
-print(65)
+x = 10 + 5
+y = x * 2
+print y
+z = y - 5
+print z
 
 
