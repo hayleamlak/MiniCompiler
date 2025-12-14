@@ -1,7 +1,16 @@
-x = 10 + 5
-y = x * 2
-print y
-z = y - 5
-print z
 
+x = 6
+y = 0
+
+
+for i = 1 to x {
+    y = y + i
+print y
+}
+
+if y > 10 {
+    print y
+} else {
+    print 0
+}
 

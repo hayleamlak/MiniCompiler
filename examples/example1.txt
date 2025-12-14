@@ -1,6 +1,15 @@
-x = 10 + 5
-y = x * 2
-print y
-z = y - 5
-print z
+# Variable assignment
+x = 5
+y = 0
 
+# For loop from 1 to x
+for i = 1 to x {
+    y = y + i
+}
+
+# Conditional statement
+if y > 10 {
+    print y
+} else {
+    print 0
+}

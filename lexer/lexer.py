@@ -1,15 +1,16 @@
-# lexer/lexer.py
+# lexer.py
 
 # Token types
-INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, ASSIGN, PRINT, IDENTIFIER, EOF = (
-    'INTEGER', 'PLUS', 'MINUS', 'MUL', 'DIV', 'LPAREN', 'RPAREN', 'ASSIGN', 'PRINT', 'IDENTIFIER', 'EOF'
+INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, ASSIGN, PRINT, IDENTIFIER, EOF, \
+IF, ELSE, FOR, TO, LBRACE, RBRACE, EQ, NE, LT, GT, LTE, GTE = (
+    'INTEGER','PLUS','MINUS','MUL','DIV','LPAREN','RPAREN','ASSIGN','PRINT','IDENTIFIER','EOF',
+    'IF','ELSE','FOR','TO','LBRACE','RBRACE','EQ','NE','LT','GT','LTE','GTE'
 )
 
 class Token:
     def __init__(self, type_, value):
         self.type = type_
         self.value = value
-
     def __repr__(self):
         return f"Token({self.type}, {self.value})"
 
@@ -32,8 +33,8 @@ class Lexer:
         while self.current_char and self.current_char.isalnum():
             result += self.current_char
             self.advance()
-        if result == "print":
-            return Token(PRINT, result)
+        if result in ('print','if','else','for','to'):
+            return Token(result.upper(), result)
         return Token(IDENTIFIER, result)
 
     def integer(self):
@@ -48,35 +49,57 @@ class Lexer:
             if self.current_char.isspace():
                 self.skip_whitespace()
                 continue
-
             if self.current_char.isdigit():
                 return self.integer()
-
             if self.current_char.isalpha():
                 return self.identifier()
-
             if self.current_char == '+':
                 self.advance()
-                return Token(PLUS, '+')
+                return Token(PLUS,'+')
             if self.current_char == '-':
                 self.advance()
-                return Token(MINUS, '-')
+                return Token(MINUS,'-')
             if self.current_char == '*':
                 self.advance()
-                return Token(MUL, '*')
+                return Token(MUL,'*')
             if self.current_char == '/':
                 self.advance()
-                return Token(DIV, '/')
+                return Token(DIV,'/')
             if self.current_char == '(':
                 self.advance()
-                return Token(LPAREN, '(')
+                return Token(LPAREN,'(')
             if self.current_char == ')':
                 self.advance()
-                return Token(RPAREN, ')')
+                return Token(RPAREN,')')
+            if self.current_char == '{':
+                self.advance()
+                return Token(LBRACE,'{')
+            if self.current_char == '}':
+                self.advance()
+                return Token(RBRACE,'}')
             if self.current_char == '=':
                 self.advance()
-                return Token(ASSIGN, '=')
-
+                if self.current_char == '=':
+                    self.advance()
+                    return Token(EQ,'==')
+                return Token(ASSIGN,'=')
+            if self.current_char == '!':
+                self.advance()
+                if self.current_char == '=':
+                    self.advance()
+                    return Token(NE,'!=')
+                raise Exception("Invalid character '!'")
+            if self.current_char == '<':
+                self.advance()
+                if self.current_char == '=':
+                    self.advance()
+                    return Token(LTE,'<=')
+                return Token(LT,'<')
+            if self.current_char == '>':
+                self.advance()
+                if self.current_char == '=':
+                    self.advance()
+                    return Token(GTE,'>=')
+                return Token(GT,'>')
             raise Exception(f"Invalid character: {self.current_char}")
-
         return Token(EOF, None)

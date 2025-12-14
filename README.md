@@ -16,7 +16,7 @@ A small educational compiler/interpreter written in Python. It demonstrates a si
 Launch the IDE:
 
 ```powershell
-python ide.py
+Run python ide.py
 ```
 
 Run the interpreter programmatically:
@@ -85,8 +85,4 @@ The `ide.exe` will be in the `dist/` folder.
 ## Development notes
 - Run the IDE: `python ide.py`
 - Run a specific example from Python: import `run_file` from `main` and call it with the file path.
-
-
-
-.
 Contributions and questions welcome
