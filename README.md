@@ -11,8 +11,8 @@ A compact educational compiler/interpreter for a tiny expression language. It in
 - Assignment: `x = expr`
 - Print: `atim expr` (localized)
 - Conditionals: `kehone condition { ... } kalhone { ... }`
-- Loops: `le i = start eske end { ... }` (inclusive range)
-- Booleans: `negne` (true), `aydele` (false)
+- Loops: `ke i = start eske end { ... }` (inclusive range)
+- Booleans: `ewnet` (true), `haset` (false)
 - Strings: double-quoted literals
 
 ### Localized keywords
@@ -21,38 +21,17 @@ A compact educational compiler/interpreter for a tiny expression language. It in
 | print   | `atim`   |
 | if      | `kehone` |
 | else    | `kalhone`|
-| for     | `le`     |
+| for     | `ke`     |
 | to      | `eske`   |
-| true    | `negne`  |
-| false   | `aydele` |
+| true    | `ewnet`  |
+| false   | `haset`  |
 
 ### Example program (all features)
 ```
 title = "demo"
 count = 3
 sum = 0
-flag = negne
-
-atim "-- start --"
-
-kehone flag {
-	atim "flag is true"
-}
-
-le i = 1 eske count {
-	sum = sum + i
-	atim i
-}
-
-
-
-kehone avg >= 2 {
-	atim "avg ok"
-```
-title = "demo"
-count = 3
-sum = 0
-flag = negne
+flag = ewnet
 
 atim "-- start --"
 
@@ -60,12 +39,12 @@ kehone flag {
     atim "flag is true"
 }
 
-le i = 1 eske count {
+ke i = 1 eske count {
     sum = sum + i
     atim i
 }
 
-kehone x > 1 {
+avg = sum / count
 
 kehone avg >= 2 {
     atim "avg ok"
@@ -82,7 +61,29 @@ atim avg
 atim title
 atim "-- end --"
 ```
-	atim "ok"
+
+## Quick start (GUI IDE)
+```powershell
+cd "C:\Users\USER\garbage\python project\MiniCompiler"
+python ide.py
+```
+
+## Quick start (terminal/CLI)
+- Run an example file:
+```powershell
+python -c "from main import run_file; print(run_file('examples/all_in_one.txt'))"
+```
+- Run your own file in the current folder:
+```powershell
+python -c "from main import run_file; print(run_file('temp_input.txt'))"
+```
+- Create and run inline code via a heredoc:
+```powershell
+@'
+atim "hello"
+x = 2
+kehone x > 1 {
+    atim "ok"
 }
 '@ | Set-Content temp_input.txt
 python -c "from main import run_file; print(run_file('temp_input.txt'))"

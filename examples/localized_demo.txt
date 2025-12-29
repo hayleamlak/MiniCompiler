@@ -1,10 +1,10 @@
 x = 2
 kehone x > 1 {
-    atim negne
+    atim ewnet
 } kalhone {
-    atim aydele
+    atim haset
 }
 
-le i = 1 eske 3 {
+ke i = 1 eske 3 {
     atim i * x
 }

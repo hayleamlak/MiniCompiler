@@ -1,7 +1,7 @@
 title = "mini compiler "
 count = 3
 sum = 0
-flag = negne
+flag = ewnet
 
 atim "-- start --"
 
@@ -9,7 +9,7 @@ kehone flag {
     atim "flag is true"
 }
 
-le i = 1 eske count {
+ke i = 1 eske count {
     sum = sum + i
     atim i
 }

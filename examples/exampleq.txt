@@ -6,6 +6,7 @@ kehone y > 10 {
 } kalhone {
     atim 0
 }
-le i = 1 eske 3 {
+ke i = 1 eske 3 {
     atim i
 }
+

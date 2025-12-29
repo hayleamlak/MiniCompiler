@@ -23,8 +23,14 @@ class Lexer:
             'atim': PRINT,
             'kehone': IF,
             'kalhone': ELSE,
-            'le': FOR,
+            # loop keyword updated from 'le' to 'ke'
+            'ke': FOR,
             'eske': TO,
+            # booleans updated to ewnet/haset
+            'ewnet': TRUE,
+            'haset': FALSE,
+            # keep legacy aliases for backward compatibility
+            'le': FOR,
             'negne': TRUE,
             'aydele': FALSE,
         }
