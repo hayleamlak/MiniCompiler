@@ -1,4 +1,4 @@
-title = "mini compiler demo"
+title = "mini compiler "
 count = 3
 sum = 0
 flag = negne

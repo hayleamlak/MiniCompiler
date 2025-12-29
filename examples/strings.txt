@@ -1,0 +1,7 @@
+name = "hayleamalak"
+kehone name == "hayleamalak" {
+    atim "your name is hayleamalk "
+} kalhone {
+    atim "your name is not hayleamalk"
+}
+

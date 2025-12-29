@@ -1,88 +1,111 @@
 # MiniCompiler
 
-A small educational compiler/interpreter written in Python. It demonstrates a simple lexer, parser, AST, and interpreter for a tiny expression language with variables and `print` statements. A minimal Tkinter-based IDE (`ide.py`) is included for editing and running code.
-
-## Features
-- Lexer supporting integers, identifiers, operators, parentheses, and the `print` keyword
-- Recursive-descent parser producing a small AST (binary ops, numbers, variables, assignments, print)
-- Interpreter that evaluates statements and captures `print` output
-- Minimal IDE (`ide.py`) with syntax highlighting, line numbers, and an output pane
+A compact educational compiler/interpreter for a tiny expression language. It includes a lexer, recursive-descent parser, AST nodes, interpreter, and a minimal Tkinter IDE for quick experimentation.
 
 ## Requirements
-- Python 3.8+ (no external packages required)
+- Python 3.8+ (standard library only)
 
-## Quick start
+## Language at a glance
+- Numbers (ints), identifiers, arithmetic: `+ - * /`
+- Comparisons: `== != < > <= >=`
+- Assignment: `x = expr`
+- Print: `atim expr` (localized)
+- Conditionals: `kehone condition { ... } kalhone { ... }`
+- Loops: `le i = start eske end { ... }` (inclusive range)
+- Booleans: `negne` (true), `aydele` (false)
+- Strings: double-quoted literals
 
-Launch the IDE:
+### Localized keywords
+| Purpose | Keyword  |
+| ------- | -------- |
+| print   | `atim`   |
+| if      | `kehone` |
+| else    | `kalhone`|
+| for     | `le`     |
+| to      | `eske`   |
+| true    | `negne`  |
+| false   | `aydele` |
 
-```powershell
-Run python ide.py
+### Example program (all features)
 ```
+title = "demo"
+count = 3
+sum = 0
+flag = negne
 
-Run the interpreter programmatically:
+atim "-- start --"
 
-```python
-from main import run_file
-print(run_file('examples/example1.txt'))
+kehone flag {
+	atim "flag is true"
+}
+
+le i = 1 eske count {
+	sum = sum + i
+	atim i
+}
+
+
+
+kehone avg >= 2 {
+	atim "avg ok"
 ```
+title = "demo"
+count = 3
+sum = 0
+flag = negne
 
-`main.run_file` returns a string with the interpreter output or an error message.
+atim "-- start --"
 
-## Language examples
+kehone flag {
+    atim "flag is true"
+}
 
-- Assignment:
+le i = 1 eske count {
+    sum = sum + i
+    atim i
+}
 
+kehone x > 1 {
+
+kehone avg >= 2 {
+    atim "avg ok"
+} kalhone {
+    atim "avg low"
+}
+
+kehone title == "demo" {
+    atim "title matches"
+}
+
+atim sum
+atim avg
+atim title
+atim "-- end --"
 ```
-x = 10
-```
-
-- Arithmetic expressions:
-
-```
-y = (x + 3) * 2
-```
-
-- Print:
-
-```
-print y
-```
-
-### Sample program
-
-```
-a = 2
-b = a * 5 + 3
-print b
-```
-
-Expected output:
-
-```
-13
+	atim "ok"
+}
+'@ | Set-Content temp_input.txt
+python -c "from main import run_file; print(run_file('temp_input.txt'))"
 ```
 
 ## Project layout
-- `lexer/lexer.py` — tokenizer
-- `parser/parser.py` — parser + AST node classes
-- `interpreter/interpreter.py` — evaluator
-- `ide.py` — simple Tkinter IDE
-- `main.py` — runner that ties lexer/parser/interpreter
-- `examples/` — sample files
+- lexer/lexer.py — tokenizer and keyword map
+- parser/parser.py — AST nodes and recursive-descent parser
+- interpreter/interpreter.py — evaluator for statements/expressions
+- ide.py — minimal Tkinter IDE
+- main.py — helper to run files (run_file(path)) from code/CLI
+- examples/ — sample programs (all_in_one.txt, strings.txt, etc.)
 
-## Building a standalone IDE executable (optional)
-
-Install PyInstaller if you need a standalone executable:
-
+## Build a standalone IDE executable (optional)
 ```powershell
 pip install pyinstaller
 pyinstaller --onefile --noconsole --icon=assets/app.ico ide.py
 ```
+Output lands in dist/ide.exe. Remove --icon if the icon file is unavailable.
 
-The `ide.exe` will be in the `dist/` folder.
+## Troubleshooting
+- python not found: ensure the Python 3.8+ install is on PATH.
+- Tkinter errors: use the standard Python installer that bundles Tk/Tcl.
+- Paths with spaces: always quote paths (e.g., "C:\Users\USER\garbage\python project\MiniCompiler").
+- IDE errors: copy the stack trace/output; use the CLI run command to isolate issues.
 
-
-## Development notes
-- Run the IDE: `python ide.py`
-- Run a specific example from Python: import `run_file` from `main` and call it with the file path.
-Contributions and questions welcome

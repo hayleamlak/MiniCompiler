@@ -11,6 +11,12 @@ class Num:
 class Var:
     def __init__(self, name): self.name = name
 
+class Bool:
+    def __init__(self, value): self.value = value
+
+class Str:
+    def __init__(self, value): self.value = value
+
 class BinOp:
     def __init__(self, left, op, right):
         self.left = left
@@ -57,6 +63,15 @@ class Parser:
         if token.type == INTEGER:
             self.eat(INTEGER)
             return Num(token.value)
+        elif token.type == TRUE:
+            self.eat(TRUE)
+            return Bool(True)
+        elif token.type == FALSE:
+            self.eat(FALSE)
+            return Bool(False)
+        elif token.type == STRING:
+            self.eat(STRING)
+            return Str(token.value)
         elif token.type == IDENTIFIER:
             self.eat(IDENTIFIER)
             return Var(token.value)

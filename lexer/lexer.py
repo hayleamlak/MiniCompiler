@@ -2,9 +2,9 @@
 
 # Token types
 INTEGER, PLUS, MINUS, MUL, DIV, LPAREN, RPAREN, ASSIGN, PRINT, IDENTIFIER, EOF, \
-IF, ELSE, FOR, TO, LBRACE, RBRACE, EQ, NE, LT, GT, LTE, GTE = (
+IF, ELSE, FOR, TO, LBRACE, RBRACE, EQ, NE, LT, GT, LTE, GTE, TRUE, FALSE, STRING = (
     'INTEGER','PLUS','MINUS','MUL','DIV','LPAREN','RPAREN','ASSIGN','PRINT','IDENTIFIER','EOF',
-    'IF','ELSE','FOR','TO','LBRACE','RBRACE','EQ','NE','LT','GT','LTE','GTE'
+    'IF','ELSE','FOR','TO','LBRACE','RBRACE','EQ','NE','LT','GT','LTE','GTE','TRUE','FALSE','STRING'
 )
 
 class Token:
@@ -19,6 +19,15 @@ class Lexer:
         self.text = text
         self.pos = 0
         self.current_char = text[self.pos] if text else None
+        self.keyword_map = {
+            'atim': PRINT,
+            'kehone': IF,
+            'kalhone': ELSE,
+            'le': FOR,
+            'eske': TO,
+            'negne': TRUE,
+            'aydele': FALSE,
+        }
 
     def advance(self):
         self.pos += 1
@@ -28,13 +37,24 @@ class Lexer:
         while self.current_char and self.current_char.isspace():
             self.advance()
 
+    def string_literal(self):
+        self.advance()  # skip opening quote
+        result = ''
+        while self.current_char and self.current_char != '"':
+            result += self.current_char
+            self.advance()
+        if self.current_char != '"':
+            raise Exception("Unterminated string literal")
+        self.advance()  # skip closing quote
+        return Token(STRING, result)
+
     def identifier(self):
         result = ''
         while self.current_char and self.current_char.isalnum():
             result += self.current_char
             self.advance()
-        if result in ('print','if','else','for','to'):
-            return Token(result.upper(), result)
+        if result in self.keyword_map:
+            return Token(self.keyword_map[result], result)
         return Token(IDENTIFIER, result)
 
     def integer(self):
@@ -51,6 +71,8 @@ class Lexer:
                 continue
             if self.current_char.isdigit():
                 return self.integer()
+            if self.current_char == '"':
+                return self.string_literal()
             if self.current_char.isalpha():
                 return self.identifier()
             if self.current_char == '+':

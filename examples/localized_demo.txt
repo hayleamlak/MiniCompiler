@@ -1,0 +1,10 @@
+x = 2
+kehone x > 1 {
+    atim negne
+} kalhone {
+    atim aydele
+}
+
+le i = 1 eske 3 {
+    atim i * x
+}

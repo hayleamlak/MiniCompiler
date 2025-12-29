@@ -140,12 +140,6 @@ class MiniCompilerIDE:
     # Toolbar
     # -----------------------
    
-   
-   
-   
-   
-   
-   
 
     # -----------------------
     # Editor Tabs

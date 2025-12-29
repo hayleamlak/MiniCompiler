@@ -1,6 +1,6 @@
 # interpreter.py
 
-from parser.parser import BinOp, Num, Var, Assign, Print, IfNode, ForNode
+from parser.parser import BinOp, Num, Var, Assign, Print, IfNode, ForNode, Bool, Str
 
 class Interpreter:
     def __init__(self):
@@ -9,6 +9,10 @@ class Interpreter:
 
     def visit(self, node):
         if isinstance(node, Num):
+            return node.value
+        elif isinstance(node, Bool):
+            return node.value
+        elif isinstance(node, Str):
             return node.value
         elif isinstance(node, Var):
             if node.name in self.env: 
