@@ -66,3 +66,9 @@ class Interpreter:
             if node:
                 self.visit(node)
         return self.output.strip()
+
+    def run_nodes(self, nodes):
+        """Execute a pre-parsed list of AST nodes."""
+        for node in nodes:
+            self.visit(node)
+        return self.output.strip()

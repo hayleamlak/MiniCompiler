@@ -1,5 +1,0 @@
-atim "hello"
-x = 2
-kehone x > 1 {
-    atim "ok"
-}

@@ -71,7 +71,7 @@ python ide.py
 ## Quick start (terminal/CLI)
 - Run an example file:
 ```powershell
-python -c "from main import run_file; print(run_file('examples/all_in_one.txt'))"
+python -c "from main import run_file; print(run_file('examples/input1.txt'))"
 ```
 - Run your own file in the current folder:
 ```powershell
